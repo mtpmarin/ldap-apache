@@ -1,6 +1,8 @@
 # Apache config with LDAP Authentication
 This config enables LDAP authentication with Reverse proxy. Can be used for redirect to containers and applications without authetication by default.
 
+Compatible with [Docker Registry](https://docs.docker.com/registry/).
+
 ## How to use
 
 1 - First install Apache on Ubuntu:
