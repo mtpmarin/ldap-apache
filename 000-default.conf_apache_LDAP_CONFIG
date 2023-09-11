@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+ <Location />
+  Order allow,deny
+  Allow from all
+  ProxyPass  http://localhost:PORT/
+  ProxyPassReverse http://localhost:PORT/
+  AuthType Basic
+  AuthName "Enter LDAP credentials"
+
+  AuthBasicProvider ldap
+  AuthLDAPGroupAttribute member
+  AuthLDAPSubGroupClass group
+  AuthLDAPGroupAttributeIsDN On
+  AuthLDAPURL ldap://AD_IP:389/OU=Users,DC=teste,DC=contoso?sAMAccountName?sub?(objectClass=*)
+  AuthLDAPBindDN "CN=user,OU=Users,DC=teste,DC=contoso"
+  AuthLDAPBindPassword "passwd"
+
+  require ldap-group CN=group,OU=Security,OU=Groups,DC=teste,DC=contoso
+ </Location>
+ ProxyPreserveHost On
+</VirtualHost>
